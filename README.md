@@ -27,7 +27,6 @@ spider_netflav
   └── spiders
         ├── image_spider.py (图片下载爬虫)
         ├── text_spider.py (文本爬虫)
-        ├── text_spider.py (文本爬虫)
         └── ...
 ```
 
@@ -53,5 +52,5 @@ spider_netflav
 
 **图片爬取**
 
-1.   将`setting.py`中`IS_SPIDER_TEXT`的值设为`True`
+1.   将`setting.py`中`IS_SPIDER_TEXT`的值设为`False`
 2.   在终端中输入命令：`scrapy crawl image`
