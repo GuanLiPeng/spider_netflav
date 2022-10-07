@@ -1,31 +1,27 @@
-import scrapy
-
-from spider_netflav.items import SpiderNetflavImageItem
-
 """
 测试用
 
-运行：(setting中记得修改配置)
-  scrapy crawl test(爬虫名)
+运行：
+  scrapy crawl test
 """
+import scrapy
 
 
+# TODO:setting中记得修改配置
 class Test(scrapy.Spider):
-    # TODO: 是否使用测试模式（仅爬取少量数据）
-    DEBUG = True
     # 爬虫名字
     name = 'test'
-    # 列表页链接(&page不要放进去)
-    start_urls = ['https://netflav.com/video?id=iYgATu12rL']
-    # 图片下载的前缀链接
-    prefix_url = 'https://pics.dmm.co.jp/digital/video/'
-    # 开始页数
-    page = 1
-    # 总页数
-    MAX_PAGE = 4
+    # 列表页链接
+    start_urls = [
+        ''
+    ]
     
-    # @override 默认开始函数
     def parse(self, response, **kwargs):
-        print(response.xpath('//meta[@property="og:image"]/@content').get())
-        print(response.xpath('//meta[@property="og:url"]/@content').get())
-    
+        """@override \n
+        默认解析函数，此函数对列表页进行了解析
+        """
+        lis = ""
+        for item in response.xpath('//div[@class="genre_filter_root"]/div[@class="genre_filter_item"]/text()').getall():
+            if len(lis) > 0: lis += '，'
+            lis += item
+        print(lis)
