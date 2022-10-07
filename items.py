@@ -6,13 +6,14 @@
 import scrapy
 
 
-# 定义要爬取的字段
 class SpiderNetflavItem(scrapy.Item):
     """
-     番号 AV_id
-     发行日期 AV_date
-     番名 AV_title
-     类别 AV_sort
+    定义要爬取的字段：
+    
+    AV_id      番号 \n
+    AV_date    发行日期 \n
+    AV_title   番名 \n
+    AV_sort    类别 \n
     """
     AV_id = scrapy.Field()
     AV_date = scrapy.Field()
@@ -20,11 +21,12 @@ class SpiderNetflavItem(scrapy.Item):
     AV_sort = scrapy.Field()
 
 
-# 定义下载图片的字段
 class SpiderNetflavImageItem(scrapy.Item):
     """
-     番号 AV_id
-     图片url列表 image_urls
+    定义下载图片的字段：
+    
+    AV_id       番号 \n
+    image_urls  图片url列表 \n
     """
     AV_id = scrapy.Field()
     image_urls = scrapy.Field()

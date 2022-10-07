@@ -12,17 +12,24 @@ from scrapy.pipelines.images import ImagesPipeline
 
 
 class SpiderNetflavPipeline(ImagesPipeline):
-    # @override 对图片地址发起请求
+    
     def get_media_requests(self, item, info):
+        """@override \n
+        对图片地址发起请求
+        """
         for image_url in item["image_urls"]:
             yield scrapy.Request(image_url, meta={'item': item, 'image_url': image_url})
     
-    # @override 当一个单独项目中的所有图片请求完成时（要么完成下载，要么因为某种原因下载失败）将被调用
     def item_completed(self, results, item, info):
+        """@override \n
+        当一个单独项目中的所有图片请求完成时（要么完成下载，要么因为某种原因下载失败）将被调用
+        """
         return item
     
-    # @override 图片存放的路径
     def file_path(self, request, response=None, info=None, *, item=None):
+        """@override \n
+        图片存放的路径
+        """
         item = request.meta['item']
         folder_name = item['AV_id']  # AND-123
         tail = str(request.meta['image_url']).split('/')[-1]  # adn00381pl.jpg  or  adn00381jp-1.jpg
